@@ -1,5 +1,6 @@
 // Import all dependencies, mostly using destructuring for better view.
 import { ClientConfig, Client, middleware, MiddlewareConfig, WebhookEvent, TextMessage, MessageAPIResponseBase } from '@line/bot-sdk';
+import axios from 'axios';
 import express, { Application, Request, Response } from 'express';
 
 // Setup all LINE client and Express configurations.
@@ -29,14 +30,44 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   }
 
   // Process all message related variables here.
+  //const { replyToken } = event;
+  //const { text } = event.message;
+
+
+  //Get dad joke
+  let config = { headers:{Accept: 'application/json'} }
+  const address = 'https://icanhazdadjoke.com/'
+  
+  const getDadJoke = async() => {
+      try{
+      const res = await axios.get(address, config)
+      return res.data.joke;
+      } catch(e) {
+          return "No jokes available! Thank god!";
+      }
+  }
+
+  let text;
+  // Process all message related variables here.
   const { replyToken } = event;
-  const { text } = event.message;
+  //const { text } = event.message;
+  if(event.message.toString().includes('jo')){
+    text  = `${await getDadJoke()}`;
+  }
+  else{
+    text  = `Error finding joke`; 
+  }
+
+
 
   // Create a new message.
   const response: TextMessage = {
     type: 'text',
     text,
   };
+
+
+
 
   // Reply to the user.
   await client.replyMessage(replyToken, response);
