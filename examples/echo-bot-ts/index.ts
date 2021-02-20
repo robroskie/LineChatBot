@@ -53,9 +53,9 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   //const { text } = event.message;
   //if(event.message.toString().includes('jo'))
     let temp = event.message.toString();
-    console.log(temp.toLowerCase().includes('jo'));
-    console.log(event.message.toString());
-    console.log(event.message);
+    console.log(event.message.text.toLowerCase().includes('jo'));
+    console.log(event.message.text.toString());
+    //console.log(event.message);
     text  = `${await getDadJoke()}`;
   
   /*
