@@ -53,7 +53,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
     try{
     address_horrorscope += sign;
     const res = await axios.get(address_horrorscope)
-    return res.data.joke;
+    return res.data.horoscope;
     } catch(e) {
         return "No horrorscopes available! Thank god!";
     }
