@@ -36,7 +36,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
 
   //Get dad joke
   let config = { headers:{Accept: 'application/json'} }
-  const address = 'https://icanhazdadjoke.com/'
+  const address = 'https://icanhazdadjoke.com/';
   
   const getDadJoke = async() => {
       try{
@@ -47,6 +47,19 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
       }
   }
 
+  //Get horroscope
+  let address_horrorscope = 'http://horoscope-api.herokuapp.com//horoscope';
+  const getHorrorscope = async(sign) => {
+    try{
+    address_horrorscope += sign;
+    const res = await axios.get(address_horrorscope)
+    return res.data.joke;
+    } catch(e) {
+        return "No horrorscopes available! Thank god!";
+    }
+}
+
+
   let text;
   // Process all message related variables here.
   const { replyToken } = event;
@@ -55,6 +68,14 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
     let temp = event.message.toString();
     if(event.message.text.toLowerCase().includes('joke'))
       text  = `${await getDadJoke()}`;
+
+    else if(event.message.text.toLowerCase().includes('hor')){
+      console.log("horrorscope requested");
+      let sign = temp.substr(temp.indexOf(' ')+1);
+      text  = `${await getHorrorscope(sign)}`;
+      //text  = "horrorscope requested";
+    }
+
     else
       return;
 
