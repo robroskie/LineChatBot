@@ -52,7 +52,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
     try{
       const res = await axios.get(`http://horoscope-api.herokuapp.com/horoscope/today/${search_term}`);
       console.log("horrorscope requested");
-      return res.data.horoscope;
+      return Promise.resolve(res.data.horoscope);
     } catch(e) {
         return "No horrorscopes available! Thank god!";
     }
