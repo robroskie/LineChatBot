@@ -76,7 +76,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
     else if(event.message.text.toLowerCase().includes('hor')){
       console.log("horrorscope requested");
       let sign_input = temp.substr(temp.indexOf(' ')+1);
-      getHoroscope(sign_input).then(text => console.log(text));
+      getHoroscope(sign_input).then(texts => client.replyMessage(replyToken, texts));
       return text;
     }
 
