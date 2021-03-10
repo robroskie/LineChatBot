@@ -48,8 +48,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   }
 
   //Get horroscope
-  //let address_horrorscope = 'http://horoscope-api.herokuapp.com/horoscope/today/';
-  const getHorrorscope = async(search_term : any) => {
+  const getHoroscope = async(search_term : any) => {
     try{
       const res = await axios.get(`http://horoscope-api.herokuapp.com/horoscope/today/${search_term}`);
       return res.data.horoscope;
@@ -72,7 +71,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
     else if(event.message.text.toLowerCase().includes('hor')){
       console.log("horrorscope requested");
       let sign_input = temp.substr(temp.indexOf(' ')+1);
-      text  = await getHorrorscope(sign_input);
+      text  = `${await getHoroscope(sign_input)}`;
     }
 
     else
