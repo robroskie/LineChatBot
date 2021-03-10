@@ -48,7 +48,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   }
 
   //Get horroscope
-  let address_horrorscope = 'http://horoscope-api.herokuapp.com//horoscope';
+  let address_horrorscope = 'http://horoscope-api.herokuapp.com/horoscope/today/';
   const getHorrorscope = async(sign) => {
     try{
     address_horrorscope += sign;
