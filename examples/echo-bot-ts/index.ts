@@ -40,20 +40,19 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   
   const getDadJoke = async() => {
       try{
-      const res = await axios.get(address, config)
-      return res.data.joke;
+        const res = await axios.get(address, config)
+        return res.data.joke;
       } catch(e) {
           return "No jokes available! Thank god!";
       }
   }
 
   //Get horroscope
-  let address_horrorscope = 'http://horoscope-api.herokuapp.com/horoscope/today/';
-  const getHorrorscope = async(sign: any) => {
+  //let address_horrorscope = 'http://horoscope-api.herokuapp.com/horoscope/today/';
+  const getHorrorscope = async(search_term : any) => {
     try{
-    address_horrorscope += sign;
-    const res = await axios.get(address_horrorscope)
-    return res.data.horoscope;
+      const res = await axios.get(`http://horoscope-api.herokuapp.com/horoscope/today/${search_term}`);
+      return res.data.horoscope;
     } catch(e) {
         return "No horrorscopes available! Thank god!";
     }
@@ -66,14 +65,14 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   //const { text } = event.message;
   //if(event.message.toString().includes('jo'))
     let temp = event.message.toString();
+
     if(event.message.text.toLowerCase().includes('joke'))
       text  = `${await getDadJoke()}`;
 
     else if(event.message.text.toLowerCase().includes('hor')){
       console.log("horrorscope requested");
       let sign_input = temp.substr(temp.indexOf(' ')+1);
-      text  = `${await getHorrorscope(sign_input)}`;
-      //text  = "horrorscope requested";
+      text  = await getHorrorscope(sign_input);
     }
 
     else
