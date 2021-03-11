@@ -34,9 +34,10 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   //const { text } = event.message;
 
 
-  function getRandomInt(max) {
+  function getRandomInt(max: number) {
     return Math.floor(Math.random() * Math.floor(max));
   }
+  
   //Get dad joke
   let config = { headers:{Accept: 'application/json'} }
   const address = 'https://icanhazdadjoke.com/';
