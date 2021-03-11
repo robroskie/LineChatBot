@@ -69,10 +69,9 @@ function getRandNums(){
     temp_num = (Math.floor(Math.random() * 48) + 1);
     if(!temp_arr.includes(temp_num))
       temp_arr.unshift(temp_num);
-  } while(temp_arr.length < 8)
+  } while(temp_arr.length < 7)
 
-    temp_arr.sort();
-    return temp_arr;
+    return temp_arr.sort();
 }
 
 
@@ -87,10 +86,7 @@ function getRandNums(){
     
     else if(event.message.text.toLocaleLowerCase().includes('lottery')){
       text += "Lucky lottery numbers, you say? I've got what you need! Lottery number printer go brr...\n";
-      text += getRandNums();
-      console.log(typeof(text));
-      console.log(text);
-
+      text += getRandNums().toString;
     }
     /*
     else if(event.message.text.toLowerCase().includes('hor')){
