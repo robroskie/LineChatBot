@@ -34,6 +34,9 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   //const { text } = event.message;
 
 
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
   //Get dad joke
   let config = { headers:{Accept: 'application/json'} }
   const address = 'https://icanhazdadjoke.com/';
@@ -92,11 +95,10 @@ function getRandNums(){
   
 
     if(event.message.text.toLowerCase().includes('joke')){
-      text  = `${await getDadJoke()}`;
-    }
-    
-    else if(event.message.text.toLowerCase().includes('chuck')){
-      text  = `${await getChuckJoke()}`;
+      if(getRandomInt(2) == 1)
+        text  = `${await getDadJoke()}`;
+      else
+        text  = `${await getChuckJoke()}`;
     }
 
     else if(event.message.text.toLocaleLowerCase().includes('lottery')){
