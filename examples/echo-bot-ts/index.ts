@@ -47,7 +47,8 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
       }
   }
 
-  //Get horroscope
+
+  /*
   const getHoroscope = async(search_term : any) => {
     try{
       const res = await axios.get(`http://horoscope-api.herokuapp.com/horoscope/today/${search_term}`);
@@ -56,6 +57,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
         return "No horrorscopes available! Thank god!";
     }
 }
+*/
 
 
 
@@ -65,20 +67,20 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
   let text;
   // Process all message related variables here.
   const { replyToken } = event;
-  //const { text } = event.message;
-  //if(event.message.toString().includes('jo'))
-    let temp = event.message.toString();
+  
 
     if(event.message.text.toLowerCase().includes('joke')){
       text  = `${await getDadJoke()}`;
     }
 
+    /*
     else if(event.message.text.toLowerCase().includes('hor')){
       console.log("horrorscope requested");
       let sign_input = temp.substr(temp.indexOf(' ')+1);
       getHoroscope(sign_input).then(texts => console.log(texts));
       return text;
     }
+    */
 
     else
       return;
