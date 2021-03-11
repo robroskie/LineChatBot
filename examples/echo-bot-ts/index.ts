@@ -70,8 +70,9 @@ function getRandNums(){
     if(!temp_arr.includes(temp_num))
       temp_arr.unshift(temp_num);
   } while(temp_arr.length < 7)
-  
-    temp_arr.sort;
+
+      
+    temp_arr = temp_arr.sort(function (a, b) {  return a - b;  });
     return temp_arr;
 }
 
