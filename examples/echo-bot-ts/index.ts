@@ -70,8 +70,9 @@ function getRandNums(){
     if(!temp_arr.includes(temp_num))
       temp_arr.unshift(temp_num);
   } while(temp_arr.length < 7)
-
-    return temp_arr.sort();
+  
+    temp_arr.sort;
+    return temp_arr;
 }
 
 
@@ -86,7 +87,7 @@ function getRandNums(){
     
     else if(event.message.text.toLocaleLowerCase().includes('lottery')){
       text += "Lucky lottery numbers, you say? I've got what you need! Lottery number printer go brr...\n";
-      text += getRandNums().toString;
+      text += getRandNums();
     }
     /*
     else if(event.message.text.toLowerCase().includes('hor')){
