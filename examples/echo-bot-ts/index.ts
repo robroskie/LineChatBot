@@ -59,7 +59,16 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
 }
 */
 
-
+const address1 = 'https://api.chucknorris.io/jokes/random';
+  
+const getChuckJoke = async() => {
+    try{
+      const res = await axios.get(address1)
+      return res.data.value;
+    } catch(e) {
+        return "No jokes available! Thank god!";
+    }
+}
 
 function getRandNums(){
   let temp_arr: number[] = [];
@@ -86,6 +95,10 @@ function getRandNums(){
       text  = `${await getDadJoke()}`;
     }
     
+    else if(event.message.text.toLowerCase().includes('chuck')){
+      text  = `${await getChuckJoke()}`;
+    }
+
     else if(event.message.text.toLocaleLowerCase().includes('lottery')){
       text += "Lucky lottery numbers, you say? I've got what you need! Lottery number printer go brr...\n";
       text += getRandNums();
