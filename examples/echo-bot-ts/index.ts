@@ -62,7 +62,7 @@ const textEventHandler = async (event: WebhookEvent): Promise<MessageAPIResponse
 
 
 function getRandNums(){
-  let temp_arr = [];
+  let temp_arr: number[] = [];
   let temp_num;
 
   do{
@@ -90,6 +90,7 @@ function getRandNums(){
       text += getRandNums();
       console.log(typeof(text));
       console.log(text);
+
     }
     /*
     else if(event.message.text.toLowerCase().includes('hor')){
